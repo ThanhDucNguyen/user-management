@@ -1,19 +1,31 @@
-package com.usermanagement.demo.dto;
+package com.usermanagement.demo.dao.models;
 
-import java.util.List;
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class UserDTO {
+@Entity
+@Table(name = "users")
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "fullname")
     private String fullname;
+
+    @Column(name = "password")
     private String password;
 
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "username='" + username + '\'' +
-                ", fullname='" + fullname + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
