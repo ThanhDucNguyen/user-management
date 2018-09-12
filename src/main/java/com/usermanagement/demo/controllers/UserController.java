@@ -48,16 +48,12 @@ public class UserController {
         return mav;
     }
     @PostMapping(value = "/register-process")
-    public ModelAndView registerProcess(UserDTO userDTO, HttpSession session){
-        System.out.println(userDTO);
-        session.setAttribute("user", userDTO);
+    public ModelAndView registerProcess(User user, HttpSession session){
+        System.out.println(user);
+        session.setAttribute("user", user);
+        userService.postUser(user);
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/login");
         return mav;
-    }
-    // vì lý do chưa add được User từ form register => nên Cống phải add theo Jason
-    @PostMapping(value = "/add-user")
-    public @ResponseBody String createUser(@RequestBody User user){
-        return userService.addUser(user);
     }
 }

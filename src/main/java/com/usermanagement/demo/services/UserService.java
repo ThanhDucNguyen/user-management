@@ -17,4 +17,12 @@ public class UserService implements User_Service{
         userRepository.save(user);
         return "oke";
     }
+
+    public void postUser(User user) {
+        user.setUsername(user.getUsername());
+        user.setFullname(user.getFullname());
+        user.setPassword(user.getPassword());
+        userRepository.save(user);
+        return;
+    }
 }
